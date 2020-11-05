@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[t]{beamer}
+\usepackage{etex}
+\usepackage{pgfpages}
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{amsmath,amssymb,amsfonts,amscd}
+\usepackage{stmaryrd}
+\usepackage{latexsym}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[all]{xy}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\newcommand{\euler}{e}
+\newcommand{\degree}{\ensuremath{^\circ}}
+\newcommand{\Expect}{{\rm I\kern-.3em E}}
+\newcommand{\HW}{\operatornamewithlimits{HW}}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\LFSR}{\operatornamewithlimits{LFSR}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\trun}{trun}
+\DeclareMathOperator*{\Var}{Var}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\providecommand{\innerprod}[1]{\langle#1\rangle}
+%\setbeamertemplate{sections/subsections in toc}[sections numbered]
+%\setbeamertemplate{subsections in toc}[sections numbered]
+
+\setbeamertemplate{section in toc}
+{\leavevmode\leftskip=2ex%
+  \llap{%
+    \usebeamerfont*{section number projected}%
+    \usebeamercolor{section number projected}%
+    \begin{pgfpicture}{-1ex}{0ex}{1ex}{2ex}
+      \color{bg}
+      \pgfpathcircle{\pgfpoint{0pt}{.75ex}}{1.7ex}
+      \pgfusepath{fill}
+      \pgftext[base]{\color{fg}\inserttocsectionnumber}
+    \end{pgfpicture}\kern1.25ex%
+  }%
+  \inserttocsection\par}
+\setbeamertemplate{subsection in toc}
+  {\leavevmode\leftskip=2em$\bullet$\hskip1em\inserttocsubsection\par}
+
+
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator{\Li}{Li}
+\newcommand{\tcr}{\textcolor{red}}
+\newcommand{\tco}{\textcolor{orange}}
+\newcommand{\tcy}{\textcolor{yellow}}
+\newcommand{\tcg}{\textcolor{green}}
+\newcommand{\tcb}{\textcolor{blue}}
+\newcommand{\tcv}{\textcolor{violet}}
+\newcommand{\tcp}{\textcolor{purple}}
+\newcommand{\tcm}{\textcolor{magenta}}
+
+\definecolor{burntorange}{RGB}{180,100,0}
+\usecolortheme[RGB={180,100,0}]{structure} %Burnt Orange
+
+\setbeamertemplate{items}[circle]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Lattice PUF]{Lattice PUF: A Strong Physical Unclonable Function Provably Secure against Machine Learning Attacks} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[Ye Wang et al.]{Ye Wang, Xiaodan Xi, and Michael Orshansky} % Your name
+\institute[UT ECE] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+University of Texas at Austin \\ % Your institution for the title page
+\medskip
+\textit{lhywang@utexas.edu} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+%\setbeamersize{text margin left=5pt,text margin right=30pt}
+%\setbeamertemplate{itemize/enumerate body begin}{\large}
+\begin{document}
+
+\input{doc/LatticePUF}
+
+\begin{frame}
+\frametitle{Publication}
+\begin{itemize}
+\footnotesize{
+\item	\textbf{Y. Wang}, X. Xi, A. Aysu, and M. Orshansky. ``Lattice PUF: A Provably Post-Quantum Machine Learning Resistant Strong Physical Unclonable Function,'' Under review of \textit{Conference on Cryptographic Hardware and Embedded Systems (CHES)}, 2018
+\item	\textbf{Y. Wang} and M. Orshansky. ``Efficient Helper Data Reduction in SRAM PUFs via Lossy Compression,'' In \textit{Design, Automation and Test in Europe (DATE)}, 2018
+\item	A. Aysu, \textbf{Y. Wang}, P. Schaumont, and M. Orshansky. ``A New Maskless Debiasing Method for Lightweight Physical Unclonable Functions,'' In \textit{International Symposium on Hardware Oriented Security and Trust (HOST)}, 2017
+\item	\textbf{Y. Wang}, C. Caramanis, and M. Orshansky. ``Exploiting Randomness in Sketching for Efficient Hardware Implementation of Machine Learning Applications,'' In \textit{International Conference on Computer-Aided Design (ICCAD)}, 2016
+\item	M. Li, \textbf{Y. Wang}, and M. Orshansky. ``A Monte Carlo Simulation Flow for SEU Analysis of Sequential Circuits,'' In \textit{Design Automation Conference (DAC)}, 2016
+}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Publication}
+\begin{itemize}
+\footnotesize{
+\item	\textbf{Y. Wang}, C. Caramanis, and M. Orshansky. ``PolyGP:Improving GP-Based Analog Optimization through Accurate High-Order Monomials and Semidefinite Relaxation,'' In \textit{Design, Automation and Test in Europe (DATE)}, 2016
+\item	\textbf{Y. Wang}, C. Caramanis, and M. Orshansky. ``PolyGP:Improving GP-Based Analog Optimization through Accurate High-Order Monomials and Semidefinite Relaxation,'' In \textit{International Workshop on Frontiers in Analog CAD (FAC)}, 2015
+\item	\textbf{Y. Wang}, M. Li, X. Yi, Z. Song, M. Orshansky, and C. Caramanis. ``A Novel Power Grid Reduction Method Based on L1 Regularization,'' In \textit{Design Automation Conference (DAC)}, 2015
+\item	\textbf{Y. Wang}, C. Caramanis, and M. Orshansky. ``Enabling Efficient Analog Synthesis by Coupling Sparse Regression and Polynomial Optimization,'' In \textit{Design Automation Conference (DAC)}, 2014
+\item	\textbf{Y. Wang} and M. Orshansky. ``Reducing Amount of Helper Data in Silicon Physical Unclonable Functions via Lossy Compression without Production-Time Error Characterization,'' \textit{US patent pending}
+}
+\end{itemize}
+\end{frame}
+
+%\input{education}
+
+
+\begin{frame}[c]
+\Huge{\centerline{The End}}
+\Huge{\centerline{Questions?}}
+\end{frame}
+
+
+\appendix
+%\input{Appendix}
+
+
+%------------------------------------------------
+%\begin{frame}[allowframebreaks]{References}
+%\frametitle{References}
+%\footnotesize{
+%\bibliographystyle{amsalpha}
+%\bibliography{refs}
+%}
+%\end{frame}
+
+%------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\end{document} 
