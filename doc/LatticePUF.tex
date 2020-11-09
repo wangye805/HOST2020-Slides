@@ -99,23 +99,24 @@
 \begin{frame}{Decryption Functions Are not PAC Learnable}
 \begin{itemize}
     \item Chosen plaintext attacks    
-    \begin{figure}
-    \centering
-    \includegraphics[width=.8\linewidth]{fig/CPA.pdf}
-    \end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=.8\linewidth]{fig/CPA.pdf}
+\end{figure}
     \item Security against chosen plaintext attacks
 \end{itemize}    
 \end{frame}
 
 \begin{frame}{Decryption Functions Are not PAC Learnable}
-\begin{itemize}
+%\begin{itemize}
     %\item CRP space: challenge $\leftrightarrow$ ciphertext, response $\leftrightarrow$ plaintext (0/1)
-    \item A successful learning algorithm could help construct a successful chosen plaintext attack
-    \begin{figure}
-    \centering
-    \includegraphics[width=.8\linewidth]{fig/MLasDistinguisher.pdf}
-    \end{figure}
-\end{itemize}    
+    %\item A successful learning algorithm could help construct a successful chosen plaintext attack
+A successful learning algorithm could help construct a successful chosen plaintext attack
+\begin{figure}
+\centering
+\includegraphics[width=.75\linewidth]{fig/MLasDistinguisher.pdf}
+\end{figure}
+%\end{itemize}    
 \end{frame}
 
 \begin{frame}{Decryption Functions Are not PAC Learnable}
@@ -166,11 +167,10 @@
 
 \begin{frame}{Learning-With-Errors (LWE) Cryptosystem}
 \begin{itemize}
-    \item Private key: 
-    \item Public key:
-    \item Encryption function:
-    
-    \item Decryption function:
+    \item Private key: $\mathbf{s}$ uniformly random sampled in $\mathbb{Z}_q^n$ 
+    \item Public key:  $(\mathbf{A},\mathbf{b}=\mathbf{A}\mathbf{s}+\mathbf{e})$ with $\mathbf{A}\in \mathbb{Z}_q^{m\times n}$ sampled uniformly randomly and $\mathbf{e}\in \mathbb{Z}_q^m$ with each entry from $\bar{\Psi}_\alpha$
+    \item Encryption function: to encrypt a one-bit plaintext $r$, output ciphertext $\mathbf{c}=(\mathbf{a},b) = (\mathbf{A}^T\mathbf{x},\mathbf{b}^T\mathbf{x}+ r\floor{q/2})$ with $\mathbf{x}\in\{0,1\}^m$ uniformly sampled
+    \item Decryption function: decrypt the ciphertext $(\mathbf{a},b)$ to $0$ if $b-\innerprod{\mathbf{a},\mathbf{s}}$ is closer to $0$ than to $\floor{q/2}$ modulo $q$, and to $1$ otherwise
 \end{itemize}
 \end{frame}
 
@@ -264,7 +264,10 @@ b &= \sum_{j=0}^{\log q-1}c_{n\log q+j}2^j.
 \begin{itemize}
     \item ML attack belongs to passive attacks
     \item LWE decryption function vulnerable to an active input challenges manipulation attack
-    TODO: a figure shows how this attack works
+\begin{figure}
+\centering
+\includegraphics[width=.8\linewidth]{fig/ActiveAttack.pdf}
+\end{figure}    
     \item Embed a self-incrementing counter into the challenge seed []
     \begin{itemize}
         \item  restricts the attacker’s ability to completely control input challenges
