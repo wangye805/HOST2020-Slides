@@ -13,7 +13,7 @@
 \item	Strong PUFs provide a much larger CRP space than Weak PUFs 
 \begin{figure}
 \centering
-\includegraphics[width=.8\linewidth]{fig/PUFCRP.png}
+\includegraphics[width=.8\linewidth]{fig/StrongPUF.pdf}
 \end{figure}
     \begin{itemize}
         \item Weak PUFs: SRAM PUF, Butterfly PUF
@@ -30,8 +30,11 @@
             \item Linear model: Arbiter PUF, RO PUF
             \item Non-linear model: XOR Arbiter PUF, SCA PUF
         \end{itemize}
-    \item TODO: put a figure of ml attack flow
     \item Flow of ML attacks:
+    \begin{figure}
+    \centering
+    \includegraphics[width=.8\linewidth]{fig/ML Attack.pdf}
+    \end{figure}
         \begin{itemize}
             \item Collect a bunch of CRPs for given PUF 
             \item Train a mathematical model $r = f'(\mathbf{c})$
@@ -71,14 +74,14 @@
             \item Hard to learn: \textbf{all possible learning algorithms fail, or they require a large number of CRPs, or a long running time}
         \end{itemize}
     \item Probably approximately correct (PAC) model is the only known formal framework for provable notion of ML resistance
-        \begin{itemize}
-            \item Definition: strong PUF $\mathcal{F}$ is PAC-learnable if there exists a polynomial-time algorithm $\mathcal{A}$ such that $\forall \epsilon > 0$, $\forall \delta >0$, for any fixed CRP distribution $\mathcal{D}$, and $\forall f\in\mathcal{F}$, given a training set of size $m$, $\mathcal{A}$ produces a candidate model $h\in\mathcal{H}$ with probability of, at least, $1-\delta$ such that
-\begin{equation*}
-\Pr_{(\mathbf{c},r)\sim\mathcal{D}}[f(\mathbf{c})\neq h(\mathbf{c})] < \epsilon.
-\end{equation*}
-        \end{itemize}
-    \item Definition: strong PUF $\mathcal{F}$ is ML-resistant if it is not PAC-learnable
-    \item k-bit concrete hardness: if the current best ML attack requires $2^k$ CPU operations 
+    \begin{itemize}
+%            \item Definition: strong PUF $\mathcal{F}$ is PAC-learnable if there exists a polynomial-time algorithm $\mathcal{A}$ such that $\forall \epsilon > 0$, $\forall \delta >0$, for any fixed CRP distribution $\mathcal{D}$, and $\forall f\in\mathcal{F}$, given a training set of size $m$, $\mathcal{A}$ produces a candidate model $h\in\mathcal{H}$ with probability of, at least, $1-\delta$ such that
+%\begin{equation*}
+%\Pr_{(\mathbf{c},r)\sim\mathcal{D}}[f(\mathbf{c})\neq h(\mathbf{c})] < \epsilon.
+%\end{equation*}
+        \item Definition: strong PUF $\mathcal{F}$ is ML-resistant if it is not PAC-learnable
+        \item k-bit concrete hardness: if the current best ML attack requires $2^k$ CPU operations 
+    \end{itemize}
     \item Challenge: are there known PAC non-learnable functions?
 \end{itemize} 
 \end{frame}
@@ -86,39 +89,54 @@
 \begin{frame}{Decryption Functions Are not PAC Learnable}
 \begin{itemize}
     \item A typical public-key cryptosystem
-    
+    \begin{figure}
+    \centering
+    \includegraphics[width=.8\linewidth]{fig/PublicKeyCrypto.pdf}
+    \end{figure}
 \end{itemize}    
 \end{frame}
 
 \begin{frame}{Decryption Functions Are not PAC Learnable}
 \begin{itemize}
     \item Chosen plaintext attacks    
+    \begin{figure}
+    \centering
+    \includegraphics[width=.8\linewidth]{fig/CPA.pdf}
+    \end{figure}
     \item Security against chosen plaintext attacks
 \end{itemize}    
 \end{frame}
 
 \begin{frame}{Decryption Functions Are not PAC Learnable}
 \begin{itemize}
-    \item CRP space: challenge $\leftrightarrow$ ciphertext, response $\leftrightarrow$ plaintext (0/1)
+    %\item CRP space: challenge $\leftrightarrow$ ciphertext, response $\leftrightarrow$ plaintext (0/1)
     \item A successful learning algorithm could help construct a successful chosen plaintext attack
-    \begin{itemize}
-        \item TODO: add a figure how to turn learning algorithm to chosen plaintext attack
-    \end{itemize}
-    \item Theorem: If a public-key cryptosystem is secure against chosen plaintext attacks, then its decryption functions are not PAC-learnable (under the ciphertext input distribution).
-    \begin{itemize}
-        \item Implementing a PUF using decryption function
-        \item Which cryptosystem and decryption function to pick?
-    \end{itemize}
+    \begin{figure}
+    \centering
+    \includegraphics[width=.8\linewidth]{fig/MLasDistinguisher.pdf}
+    \end{figure}
 \end{itemize}    
+\end{frame}
+
+\begin{frame}{Decryption Functions Are not PAC Learnable}
+\begin{itemize}
+    \item Theorem: If a public-key cryptosystem is secure against chosen plaintext attacks, then its decryption functions are not PAC-learnable (under the ciphertext input distribution).
+    \item A PUF implemented using decryption function will be provably ML resistant 
+    \item Which cryptosystem and decryption function to pick?
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Lattice Problems}
 \begin{itemize}
-    \item A lattice $\mathcal{L}(\mathbf{V})$ is a set of integral linear combinations of a given basis $\mathbf{V}=\{\mathbf{v}_1,\mathbf{v}_2,\ldots, \mathbf{v}_n\}$:
-\begin{equation*}
-\mathcal{L}(\mathbf{V}) = \{a_1\mathbf{v}_1 + a_2\mathbf{v}_2+\ldots a_n\mathbf{v}_n: \: \forall a_i \in \mathbb{Z}\}.
-\end{equation*}
-TODO: add a figure of 2D lattice
+%    \item A lattice $\mathcal{L}(\mathbf{V})$ is a set of integral linear combinations of a given basis $\mathbf{V}=\{\mathbf{v}_1,\mathbf{v}_2,\ldots, \mathbf{v}_n\}$:
+    \item A lattice is a set of integral linear combinations of a given basis:
+%\begin{equation*}
+%\mathcal{L}(\mathbf{V}) = \{a_1\mathbf{v}_1 + a_2\mathbf{v}_2+\ldots a_n\mathbf{v}_n: \: \forall a_i \in \mathbb{Z}\}.
+%\end{equation*}
+    \begin{figure}
+    \centering
+    \includegraphics[width=.5\linewidth]{fig/Lattice.pdf}
+    \end{figure}
     \item Several lattice based problems are assumed to be intractable 
     \begin{itemize}
         \item (Approximate) shortest vector problem (SVP), Approximate SIVP
